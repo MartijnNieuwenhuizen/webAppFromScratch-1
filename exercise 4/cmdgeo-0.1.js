@@ -6,6 +6,8 @@
 *   Author: J.P. Sturkenboom <j.p.sturkenboom@hva.nl>
 *   Credit: Dive into html5, geo.js, Nicholas C. Zakas
 *
+*   Edit By Leander van Baekel
+*
 *   Copyleft 2012, all wrongs reversed.
 */
 
@@ -17,13 +19,30 @@ var GPS_UNAVAILABLE = 'GPS_UNAVAILABLE';
 var POSITION_UPDATED = 'POSITION_UPDATED';
 var REFRESH_RATE = 1000;
 var currentPosition = currentPositionMarker = customDebugging = debugId = map = interval =intervalCounter = updateMap = false;
-var locatieRij = markerRij = [];
+var locatieRow = markerRow = [];
 
 // Event functies - bron: http://www.nczonline.net/blog/2010/03/09/custom-events-in-javascript/ Copyright (c) 2010 Nicholas C. Zakas. All rights reserved. MIT License
 // Gebruik: ET.addListener('foo', handleEvent); ET.fire('event_name'); ET.removeListener('foo', handleEvent);
-function EventTarget(){this._listeners={}}
-EventTarget.prototype={constructor:EventTarget,addListener:function(a,c){"undefined"==typeof this._listeners[a]&&(this._listeners[a]=[]);this._listeners[a].push(c)},fire:function(a){"string"==typeof a&&(a={type:a});a.target||(a.target=this);if(!a.type)throw Error("Event object missing 'type' property.");if(this._listeners[a.type]instanceof Array)for(var c=this._listeners[a.type],b=0,d=c.length;b<d;b++)c[b].call(this,a)},removeListener:function(a,c){if(this._listeners[a]instanceof Array)for(var b=
-this._listeners[a],d=0,e=b.length;d<e;d++)if(b[d]===c){b.splice(d,1);break}}}; var ET = new EventTarget();
+function EventTarget () {
+    this._listeners={}
+}
+
+EventTarget.prototype = { 
+    constructor:EventTarget, 
+    addListener: function (a,c) {
+        "undefined"==typeof this._listeners[a]&&(this._listeners[a]=[]);this._listeners[a].push(c)
+    },
+    fire: function (a) {
+        "string"==typeof a&&(a={type:a});a.target||(a.target=this);
+        if(!a.type)throw Error("Event object missing 'type' property.");
+        if(this._listeners[a.type]instanceof Array)for(var c=this._listeners[a.type],b=0,d=c.length;b<d;b++)c[b].call(this,a)
+    },
+    removeListener: function (a,c) {
+        if(this._listeners[a]instanceof Array)for(var b=this._listeners[a],d=0,e=b.length;d<e;d++)if(b[d]===c){b.splice(d,1);break}
+    }
+}; 
+
+var ET = new EventTarget();
 
 // Test of GPS beschikbaar is (via geo.js) en vuur een event af
 function init(){
@@ -123,16 +142,16 @@ function generate_map(myOptions, canvasId){
         var markerLatLng = new google.maps.LatLng(locaties[i][3], locaties[i][4]);
         routeList.push(markerLatLng);
 
-        markerRij[i] = {};
+        markerRow[i] = {};
         for (var attr in locatieMarker) {
-            markerRij[i][attr] = locatieMarker[attr];
+            markerRow[i][attr] = locatieMarker[attr];
         }
-        markerRij[i].scale = locaties[i][2]/3;
+        markerRow[i].scale = locaties[i][2]/3;
 
         var marker = new google.maps.Marker({
             position: markerLatLng,
             map: map,
-            icon: markerRij[i],
+            icon: markerRow[i],
             title: locaties[i][0]
         });
     }
@@ -160,7 +179,7 @@ function generate_map(myOptions, canvasId){
     });
 
     // Zorg dat de kaart geupdated wordt als het POSITION_UPDATED event afgevuurd wordt
-    ET.addListener(POSITION_UPDATED, update_positie);
+    ET.addListener(POSITION_UPDATED, update_position);
 }
 
 function isNumber(n) {
@@ -168,7 +187,7 @@ function isNumber(n) {
 }
 
 // Update de positie van de gebruiker op de kaart
-function update_positie(event){
+function update_position(event){
     // use currentPosition to center the map
     var newPos = new google.maps.LatLng(currentPosition.coords.latitude, currentPosition.coords.longitude);
     map.setCenter(newPos);
@@ -187,3 +206,4 @@ function set_custom_debugging(debugId){
     debugId = this.debugId;
     customDebugging = true;
 }
+

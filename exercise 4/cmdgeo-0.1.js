@@ -68,7 +68,7 @@
         ET.addListener(POSITION_UPDATED, _check_locations);
     }
 
-    // Vraag de huidige positie aan geo.js, stel een callback in voor het resultaat
+    // Vraag de huidige positie aan geo.js, stelt een callback in voor het resultaat
     function _update_position(){
         intervalCounter++;
         geo_position_js.getCurrentPosition(_set_position, _geo_error_handler, {enableHighAccuracy:true});

@@ -3,12 +3,14 @@
 ## Voor- en nadelen single page web app
 
 Nadelen
-* Lang wachten tot hele pagina geladen is
-* Mobiel veel scrollen
-* 
-
+* Lastiger SEO uit te voeren
+* Javascript moet aan staan
 
 Voordelen
 * Niet elke keer nieuwe pagina laden
-* Alleen de belangrijkste content
-* 
+* Site is makkelijker resoponsive te maken
+* Minder connecties met de server
+
+Bronnen
+* http://stackoverflow.com/questions/21862054/single-page-application-advantages-and-disadvantages
+* http://www.seguetech.com/blog/2013/02/07/what-are-the-pros-and-cons-of-client-side-scripting

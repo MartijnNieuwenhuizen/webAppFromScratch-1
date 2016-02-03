@@ -35,10 +35,21 @@
 	};
 
 	var sections = {
-		toggle: function (oldroute, route) {
-			// Oldroute uitzetten
+		toggle: function (oldHash, newHash) {
 
-			// route aanzetten
+			var oldHashElement,
+			    newHashElement = false;
+
+
+			// Oldroute uitzetten
+			if (oldHash) {
+
+				oldHashElement = document.getElementById(oldHash);
+				oldHashElement.classList.add('hidden');
+			}
+
+			newHashElement = document.getElementById(newHash);
+			newHashElement.classList.remove('hidden');
 
 		}
 	};

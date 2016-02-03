@@ -31,9 +31,6 @@
         updateMap = false;
     var locatieRow = 
         markerRow = [];
-
-
-
     var ET = new EventTarget();
 
     var geo = {

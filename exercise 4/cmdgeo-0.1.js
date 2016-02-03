@@ -15,8 +15,8 @@
     'use strict';
     
     // Variable declaration
-    var SANDBOX = "SANDBOX";
-    var LINEAIR = "LINEAIR";
+    var sandbox = "sandbox";
+    var lineair = "lineair";
     var GPS_AVAILABLE = 'GPS_AVAILABLE';
     var GPS_UNAVAILABLE = 'GPS_UNAVAILABLE';
     var POSITION_UPDATED = 'POSITION_UPDATED';
